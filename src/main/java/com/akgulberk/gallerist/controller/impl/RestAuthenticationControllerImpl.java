@@ -4,6 +4,7 @@ import com.akgulberk.gallerist.controller.IRestAuthenticationController;
 import com.akgulberk.gallerist.controller.RestBaseController;
 import com.akgulberk.gallerist.controller.RootEntity;
 import com.akgulberk.gallerist.dto.AuthRequest;
+import com.akgulberk.gallerist.dto.AuthResponse;
 import com.akgulberk.gallerist.dto.DtoUser;
 import com.akgulberk.gallerist.service.IAuthenticationService;
 import jakarta.validation.Valid;
@@ -22,5 +23,11 @@ public class RestAuthenticationControllerImpl extends RestBaseController impleme
     @Override
     public RootEntity<DtoUser> register(@Valid @RequestBody AuthRequest input) {
         return ok(authenticationService.register(input));
+    }
+
+    @PostMapping("/authenticate")
+    @Override
+    public RootEntity<AuthResponse> authenticate(@Valid @RequestBody AuthRequest input) {
+        return ok(authenticationService.authenticate(input));
     }
 }

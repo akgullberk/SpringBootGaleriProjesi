@@ -2,7 +2,6 @@ package com.akgulberk.gallerist.jwt;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,7 +21,7 @@ public class JWTService {
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 2))
-                .signWith(null, SignatureAlgorithm.HS256)
+                .signWith(getKey())
                 .compact();
     }
 
@@ -36,7 +35,7 @@ public class JWTService {
                 .setSigningKey(getKey())
                 .build()
                 .parseClaimsJws(token).getBody();
-        return null;
+        return claims;
     }
 
     public String getUsernameByToken(String token) {
