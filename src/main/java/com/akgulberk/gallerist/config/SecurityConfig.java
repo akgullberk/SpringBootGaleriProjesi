@@ -18,7 +18,7 @@ public class SecurityConfig {
 
     public static final String REGISTER = "/register";
     public static final String AUTHENTICATE = "/authenticate";
-    public static final String REFRESH_TOKEN = "/refresh_token";
+    public static final String REFRESH_TOKEN = "/refreshToken";
 
     @Autowired
     private JWTAuthenticationFilter jwtAuthenticationFilter;
